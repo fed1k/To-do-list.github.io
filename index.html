@@ -4,19 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <section>
-        <h1>Awesome books</h1>
-        <span class="span1"></span><br>
-        <span class="span2"></span><br>
+    <header>
+        <nav>
+            <span id="logo">Awesome books</span>
+            <div class="nav">
+                <span class="list">List</span>
+                <span class="nav-add">Add</span>
+                <span class="contact">Contact</span>    
+            </div>
+        </nav>
+        <span id="span"></span>
+        <div class="night-container">
+            <i class="fas fa-sun"></i>
+            <button class="btn"><div class="cont"></div></button>
+            <i class="fas fa-cloud-moon"></i>
+        </div>
+    </header>
+    <div class="main">
+        <section>
+            <h1>All Awesome books</h1>
+            <div id="container">
+
+            </div>
+        </section>
+        <form>
+            <input class="input" type="text" name="title" placeholder="Title">
+            <input class="input" type="text" name="author" placeholder="Author" id="author">
+            <input type="button" value="Add" id="button">
+        </form>
+    
+    </div>
+    <section class="contact-section">
+        <p>Do you have any questions or you just want to say "Hello"? You can reach out to us!</p>
+        <ul>
+            <li>Our e-mail: @allamurotovcoder@mail.ru</li>
+            <li>Our phone number: +99890 403 38 80</li>
+            <li>Our address: Shirin town Dustlik Street</li>
+        </ul>
     </section>
-    <form>
-        <input type="text" name="title" placeholder="Title"><br>
-        <input type="text" name="author" placeholder="Author"><br>
-        <input type="button" value="Add" id="button">
-    </form>
+    <footer>
+        <span>Copyright</span>
+    </footer>
 </body>
 </html>
