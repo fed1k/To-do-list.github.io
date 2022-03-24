@@ -38,18 +38,21 @@ const add = document.createElement('input');
 add.setAttribute('type', 'text');
 add.setAttribute('placeholder', 'Add to your list...');
 form.appendChild(add);
-for (let i = 0; i < array.length; i += 1) {
-  const inputDiv = document.createElement('div');
-  inputDiv.className = 'input-div';
-  form.appendChild(inputDiv);
-  const input = document.createElement('input');
-  input.className = 'input';
-  input.setAttribute('type', 'checkbox');
-  const p = document.createElement('p');
-  p.className = 'listContent';
-  p.textContent = array[i].description;
-  const icon = document.createElement('i');
-  icon.className = 'fas fa-ellipsis-v';
-  inputDiv.append(input, p, icon);
-  array[i].index += 1;
-}
+const renderListItems = () => {
+  for (let i = 0; i < array.length; i += 1) {
+    const inputDiv = document.createElement('div');
+    inputDiv.className = 'input-div';
+    form.appendChild(inputDiv);
+    const input = document.createElement('input');
+    input.className = 'input';
+    input.setAttribute('type', 'checkbox');
+    const p = document.createElement('p');
+    p.className = 'listContent';
+    p.textContent = array[i].description;
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-ellipsis-v';
+    inputDiv.append(input, p, icon);
+    array[i].index += 1;
+  }
+};
+renderListItems();
