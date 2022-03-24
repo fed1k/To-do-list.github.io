@@ -4,17 +4,14 @@ const array = [
   {
     description: 'Shopping',
     completed: false,
-    index: 3,
   },
   {
     description: 'Going to school',
     completed: false,
-    index: 1,
   },
   {
     description: 'Washing the dishes',
     completed: false,
-    index: 2,
   },
 ];
 
@@ -51,4 +48,5 @@ for (let i = 0; i < array.length; i += 1) {
   const icon = document.createElement('i');
   icon.className = 'fas fa-ellipsis-v';
   inputDiv.append(input, p, icon);
+  array[i].index += 1;
 }
