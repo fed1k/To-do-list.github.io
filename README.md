@@ -6,7 +6,7 @@ The user can add his daily to do here and when list item is completed he/she can
 
 ## Built with:
   * HTML
-  * Javascript
+  * Javascript (ES6)
   * CSS
   * Webpack
   * Fontawesome
