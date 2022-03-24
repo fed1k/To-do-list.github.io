@@ -4,14 +4,17 @@ const array = [
   {
     description: 'Shopping',
     completed: false,
+    index: 0,
   },
   {
     description: 'Going to school',
     completed: false,
+    index: 0,
   },
   {
     description: 'Washing the dishes',
     completed: false,
+    index: 0,
   },
 ];
 
