@@ -10,7 +10,7 @@ class Template {
   }
 }
 
-let array = [];
+const array = [];
 // const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
 // array = getFromLocalStorage;
 const sendToLocalStorage = () => {
@@ -50,15 +50,19 @@ const createList = () => {
   // checkboxes.forEach((element) => {
   //   console.log(element);
   // });
-  for (let i = 0; i < list.length; i += 1) {
-    console.log(list[i]);
-  }
   checkboxes.addEventListener('click', () => {
-    console.log(list);
+    // console.log(listText);
     icon1.classList.toggle('remove-icon-active');
     icon2.classList.toggle('icon2');
     listText.classList.toggle('listContent-disable');
     list.classList.toggle('changeBg');
+    // console.log(getFromLocalStorage);
+    // console.log(listText.textContent);
+    // const FindingIndex = () => {
+    // FindingIndex();
+    // };
+    // FindingIndex();
+    // console.log(getFromLocalStorage);
   });
   // Remove from list event
   // inddd = test[i];
@@ -68,10 +72,23 @@ const createList = () => {
   // array.splice(array[test]);
   // console.log(test);
   // console.log(array);
+  // const pickIndex = (toDo)=>{
+
+  // }
+  // console.log(list);
   icon2.addEventListener('click', () => {
     // const inddd = 0;
     form.removeChild(list);
+    const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
+    const result = getFromLocalStorage.filter((word) => word.description === listText.textContent);
+    getFromLocalStorage.splice(result[0].index, 1);
+    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
   });
+
+  // const remove = (index_) => {
+  //   array.splice((index_ - 1), 1);
+  // };
+  // console.log(array);
   // Edit event listener
   icon1.addEventListener('click', () => {
     const editInput = document.createElement('input');
@@ -103,12 +120,13 @@ dataEntry.addEventListener('keypress', (e) => {
 window.addEventListener('load', () => {
   const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
   for (let i = 0; i < getFromLocalStorage.length; i += 1) {
-    createList();
     const listText = document.querySelectorAll('.listContent');
+    createList();
     listText[i].textContent = getFromLocalStorage[i].description;
-    array = getFromLocalStorage;
+    // array = getFromLocalStorage;
   }
 });
+
 // test.forEach((element) => {
 //   console.log(element);
 // });
