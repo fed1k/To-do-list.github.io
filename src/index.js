@@ -1,10 +1,10 @@
 import './style.css';
 import {
-  addTodo, listDisplay, getData, collectEdit, saveEdit,
+  addTodo, listDisplay, storageGet, collectEdit, saveEdit,
 } from './functions.js';
 
 window.onload = () => {
-  getData();
+  storageGet();
   listDisplay();
 };
 
