@@ -1,33 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
- 
+
 body {
   background-color: #f6f6f6;
   font-family: Poppins, sans-serif;
 }
- 
+
 .container {
   width: 60%;
   margin: 5% auto;
   text-align: left;
   background-color: #fff;
 }
- 
+
 button:hover {
   cursor: pointer;
   opacity: 0.5;
 }
- 
+
 .container .header {
   display: flex;
   justify-content: space-between;
   padding: 8px  3%;
 }
- 
+
 .container h1 {
   font-size: 24px;
   margin: 0;
 }
- 
+
 .add-todo {
   width: 94%;
   padding: 16px 3%;
@@ -36,13 +36,13 @@ button:hover {
   border-top: 1px solid #f4f4f4;
   font-style: italic;
 }
- 
+
 #todos-list {
   margin: 0;
   padding-left: 0;
   width: 100%;
 }
- 
+
 .todo {
   display: flex;
   align-items: center;
@@ -53,47 +53,47 @@ button:hover {
   border-top: 1px solid #f4f4f4;
   border-bottom: 1px solid #f4f4f4;
 }
- 
+
 .todo-content {
   display: flex;
   align-items: center;
 }
- 
+
 .todo-content input {
   margin-right: 16px;
 }
- 
+
 .todo button,
 .container .header button {
   background-color: white;
   border: 0;
 }
- 
+
 .todo button i {
   font-size: 21px;
   color: #dddcdd;
 }
- 
+
 .container .edit-btn i {
   color: rgb(14 185 14);
 }
- 
+
 .container .delete-btn i {
   color: rgb(250 6 6);
 }
- 
+
 .container .header button i {
   color: #979797;
   font-size: 18px;
 }
- 
+
 .clear-btn {
   width: 100%;
   padding: 16px;
   border: 0;
   font-family: Poppins, sans-serif;
 }
- 
+
 .hidden {
   display: none;
 }
