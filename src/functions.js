@@ -16,6 +16,16 @@ const storageGet = () => {
   }
 };
 
+const toggleListCheck = (todo) => {
+  list = list.map((addlist_) => {
+    if (addlist_.index === todo.index) {
+      return { ...todo, completed: !addlist_.completed };
+    }
+    return addlist_;
+  });
+  listSave();
+};
+
 const listDisplay = () => {
   const listElement = document.getElementById('list-space');
   listElement.innerHTML = '';
@@ -30,6 +40,9 @@ const listDisplay = () => {
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('name', 'checkbox');
     checkbox.checked = list[i].completed;
+    checkbox.addEventListener('change', () => {
+      toggleListCheck(list[i]);
+    });
 
     const desc = document.createElement('p');
     desc.innerText = list[i].description;
@@ -126,6 +139,16 @@ const removeTodo = (index_) => {
 
 const collectEdit = () => currentEdit;
 
+const removeAllList = () => {
+  const completedaddlists = list.filter((todo) => todo.completed);
+  if (completedaddlists.length > 0) {
+    completedaddlists.forEach((todo) => {
+      removeTodo(todo.index);
+      removeAllList();
+    });
+  }
+};
+
 export {
-  addTodo, storageGet, listDisplay, removeTodo, collectEdit, saveEdit,
+  addTodo, storageGet, listDisplay, removeTodo, collectEdit, saveEdit, removeAllList,
 };

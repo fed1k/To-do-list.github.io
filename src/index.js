@@ -1,4 +1,5 @@
 import './style.css';
+import clearCompleted from './clear.js';
 import {
   addTodo, listDisplay, storageGet, collectEdit, saveEdit,
 } from './functions.js';
@@ -21,3 +22,4 @@ desc.addEventListener('keyup', (event) => {
     else saveEdit();
   }
 });
+clearCompleted();
