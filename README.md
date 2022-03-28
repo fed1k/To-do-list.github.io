@@ -19,6 +19,9 @@ To get a local copy up and running follow these simple example steps:
 
 ![clone](https://github.com/fed1k/To-do-list)
 
+## Live
+![Live](https://fed1k.github.io/To-do-list/)
+
 2. Copy the URL given by clicking the clipboard button
 
 3. Open a terminal window in your local machine and change the current directory to the one you
