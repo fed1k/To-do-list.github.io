@@ -1,4 +1,3 @@
-// import { Template } from 'webpack';
 import './style.css';
 // import adder from './functions.js';
 
