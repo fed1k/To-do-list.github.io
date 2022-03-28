@@ -25,7 +25,6 @@ section.innerHTML = `
   </div>
 `;
 // Create list
-const movie = [];
 const createList = () => {
   const form = document.querySelector('.form');
   const list = document.createElement('div');
@@ -49,7 +48,6 @@ const createList = () => {
     listText.classList.toggle('listContent-disable');
     list.classList.toggle('changeBg');
     const getting = JSON.parse(localStorage.getItem('list'));
-    const result = getting.filter((word) => word.description === listText.textContent);
     const empty = [];
     const hammasi = document.querySelectorAll('.input-div');
     for (let i = 0; i < getting.length; i += 1) {
