@@ -10,9 +10,7 @@ class Template {
   }
 }
 
-const array = [];
-// const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
-// array = getFromLocalStorage;
+let array = [];
 const sendToLocalStorage = () => {
   localStorage.setItem('list', JSON.stringify(array));
 };
@@ -28,6 +26,7 @@ section.innerHTML = `
   </div>
 `;
 // Create list
+const movie = [];
 const createList = () => {
   const form = document.querySelector('.form');
   const list = document.createElement('div');
@@ -38,59 +37,66 @@ const createList = () => {
   checkboxes.type = 'checkbox';
   const listText = document.createElement('p');
   listText.className = 'listContent';
-  const icon1 = document.createElement('i');
-  icon1.className = 'fas fa-ellipsis-v';
-  const icon2 = document.createElement('i');
-  icon2.className = 'fas fa-trash-alt icon2';
-  list.append(checkboxes, listText, icon1, icon2);
+  const threeDots = document.createElement('i');
+  threeDots.className = 'fas fa-ellipsis-v';
+  const trashIcon = document.createElement('i');
+  trashIcon.className = 'fas fa-trash-alt trashIcon';
+  list.append(checkboxes, listText, threeDots, trashIcon);
   // Add event to checkboxes
-  // console.log(array);
-  // for(let i=0;i<test)
-  // console.log(test);
-  // checkboxes.forEach((element) => {
-  //   console.log(element);
-  // });
+  let count = 1;
   checkboxes.addEventListener('click', () => {
-    // console.log(listText);
-    icon1.classList.toggle('remove-icon-active');
-    icon2.classList.toggle('icon2');
+    threeDots.classList.toggle('remove-icon-active');
+    trashIcon.classList.toggle('trashIcon');
     listText.classList.toggle('listContent-disable');
     list.classList.toggle('changeBg');
-    // console.log(getFromLocalStorage);
-    // console.log(listText.textContent);
-    // const FindingIndex = () => {
-    // FindingIndex();
-    // };
-    // FindingIndex();
-    // console.log(getFromLocalStorage);
+    const getting = JSON.parse(localStorage.getItem('list'));
+    const result = getting.filter((word) => word.description === listText.textContent);
+    const empty = [];
+    const hammasi = document.querySelectorAll('.input-div');
+    for (let i = 0; i < getting.length; i += 1) {
+      if (hammasi[i].classList.contains('changeBg')) {
+        getting[i].completed = true;
+        count += 1;
+      } else {
+        getting[i].completed = false;
+      }
+      empty.push(getting[i]);
+      localStorage.setItem('list', JSON.stringify(empty));
+    }
   });
+  const clearAll = document.querySelector('#clear');
+  clearAll.addEventListener('click', () => {
+    const getting = JSON.parse(localStorage.getItem('list'));
+    const variable = document.querySelectorAll('.changeBg');
+    for (let i = 0; i < variable.length; i += 1) {
+      form.removeChild(variable[i]);
+    }
+    const empty = [];
+    for (let i = 0; i < getting.length; i += 1) {
+      if (getting[i].completed === true) {
+        continue;
+      }
+      empty.push(getting[i]);
+    }
+    localStorage.setItem('list', JSON.stringify(empty));
+  });
+
   // Remove from list event
-  // inddd = test[i];
-
-  // delete test[i];
-  // delete test[i];
-  // array.splice(array[test]);
-  // console.log(test);
-  // console.log(array);
-  // const pickIndex = (toDo)=>{
-
-  // }
-  // console.log(list);
-  icon2.addEventListener('click', () => {
-    // const inddd = 0;
+  trashIcon.addEventListener('click', () => {
     form.removeChild(list);
     const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
     const result = getFromLocalStorage.filter((word) => word.description === listText.textContent);
-    getFromLocalStorage.splice(result[0].index, 1);
-    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
+    const empty = [];
+    for (let i = 0; i < getFromLocalStorage.length; i += 1) {
+      if (result[0].description === getFromLocalStorage[i].description) {
+        continue;
+      }
+      empty.push(getFromLocalStorage[i]);
+    }
+    localStorage.setItem('list', JSON.stringify(empty));
   });
 
-  // const remove = (index_) => {
-  //   array.splice((index_ - 1), 1);
-  // };
-  // console.log(array);
-  // Edit event listener
-  icon1.addEventListener('click', () => {
+  threeDots.addEventListener('click', () => {
     const editInput = document.createElement('input');
     editInput.type = 'text';
     editInput.className = 'listContent';
@@ -98,9 +104,27 @@ const createList = () => {
     list.style.backgroundColor = '#fffed3';
     editInput.value = listText.textContent;
     list.replaceChild(editInput, listText);
+    editInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && editInput.value) {
+        const getting = JSON.parse(localStorage.getItem('list'));
+        const result = getting.filter((word) => word.description === listText.textContent);
+        const empty = [];
+        for (let i = 0; i < getting.length; i += 1) {
+          if (getting[i].index === result[0].index) {
+            getting[i].description = editInput.value;
+          }
+          empty.push(getting[i]);
+          localStorage.setItem('list', JSON.stringify(empty));
+        }
+        list.replaceChild(listText, editInput);
+        listText.textContent = editInput.value;
+        list.style.backgroundColor = '#fff';
+      }
+    });
   });
 };
 
+// Entering list event
 const dataEntry = document.querySelector('.dataEntry');
 dataEntry.addEventListener('keypress', (e) => {
   if (e.key === 'Enter' && dataEntry.value) {
@@ -117,104 +141,18 @@ dataEntry.addEventListener('keypress', (e) => {
   }
 });
 
+// Window Load event
 window.addEventListener('load', () => {
   const getFromLocalStorage = JSON.parse(localStorage.getItem('list'));
   for (let i = 0; i < getFromLocalStorage.length; i += 1) {
-    const listText = document.querySelectorAll('.listContent');
     createList();
+    const listText = document.querySelectorAll('.listContent');
     listText[i].textContent = getFromLocalStorage[i].description;
-    // array = getFromLocalStorage;
+    if (getFromLocalStorage[i].completed === true) {
+      getFromLocalStorage[i].completed = false;
+    }
+    localStorage.setItem('list', JSON.stringify(getFromLocalStorage));
+
+    array = getFromLocalStorage;
   }
 });
-
-// test.forEach((element) => {
-//   console.log(element);
-// });
-
-// for (let i = 0; i < checkboxes.length; i += 1) {
-// console.log(checkboxes[i]);
-// }
-// checkbox.addEventListener('click', () => {
-//   const threeDots = document.querySelectorAll('.fas fa-ellipsis-v');
-//   const removeIcon = document.querySelectorAll('.fas fa-trash-v');
-//   threeDots.classList.toggle('remove-icon-active');
-//   removeIcon.classList.toggle('icon2');
-// });
-// });
-//     const input = document.createElement('input');
-//     input.className = 'input';
-//     input.setAttribute('type', 'checkbox');
-//     const p = document.createElement('p');
-//     p.className = 'listContent';
-//     for (let i = 0; i < count; i += 1) {
-//       p.textContent = array[i].description;
-//     }
-//     const icon = document.createElement('i');
-//     const icon2 = document.createElement('i');
-//     icon.className = 'fas fa-ellipsis-v';
-//     icon2.className = 'fas fa-trash-alt icon2';
-//     inputDiv.append(input, p, icon, icon2);
-
-// let count = 0;
-// add.addEventListener('keypress', (e) => {
-//   if (e.key === 'Enter' && add.value) {
-//     count += 1;
-//     e.preventDefault();
-//     const obj = new Template(add.value, false, count);
-//     array.push(obj);
-//     localStorage.setItem('local', JSON.stringify(array));
-//     add.value = null;
-//     const inputDiv = document.createElement('div');
-//     inputDiv.className = 'input-div';
-//     form.appendChild(inputDiv);
-
-//     // Remove element from the list
-//     icon2.addEventListener('click', () => {
-//       form.removeChild(inputDiv);
-//       const getFromLocalStorage = JSON.parse(localStorage.getItem('local'));
-//       localStorage.setItem('local', JSON.stringify(getFromLocalStorage));
-//     });
-//     // Checkbox event
-//     input.addEventListener('click', () => {
-//       p.classList.toggle('listContent-disable');
-//       icon.classList.toggle('remove-icon-active');
-//       icon2.classList.toggle('icon2');
-//     });
-//   }
-// });
-
-// window.addEventListener('load', () => {
-//   const getFromLocal = JSON.parse(localStorage.getItem('local'));
-//   for (let i = 0; i < getFromLocal.length; i += 1) {
-//     createList();
-//     p.textContent = getFromLocal[i].description;
-//     icon2.addEventListener('click', () => {
-//       form.removeChild(inputDiv);
-//       const getFromLocalStorage = JSON.parse(localStorage.getItem('local'));
-//       delete getFromLocalStorage[i];
-//       localStorage.setItem('local', JSON.stringify(getFromLocalStorage));
-//     });
-//     // Checkbox event
-//     input.addEventListener('click', () => {
-//       p.classList.toggle('listContent-disable');
-//       icon.classList.toggle('remove-icon-active');
-//       icon2.classList.toggle('icon2');
-//     });
-//   }
-// });
-
-// const markTask = () => {
-//   for (let i = 0; i < checkbox.length; i += 1) {
-//     checkbox[i].addEventListener('change', () => {
-//       if (checkbox[i].checked) {
-//         checkbox[i].classList.add('input-after');
-//         checkbox[i].nextElementSibling.classList.add('checked');
-//         status(i, true);
-//       } else {
-//         checkbox[i].classList.remove('input-after');
-//         checkbox[i].nextElementSibling.classList.remove('checked');
-//         status(i, false);
-//       }
-//     });
-//   }
-// };
