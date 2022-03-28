@@ -17,10 +17,10 @@ To get a local copy up and running follow these simple example steps:
 
 1. Under the repository name, click the Clone or download green button.
 
-![clone](https://github.com/fed1k/To-do-list)
+[clone](https://github.com/fed1k/To-do-list)
 
 ## Live
-![Live](https://fed1k.github.io/To-do-list/)
+[Live](https://fed1k.github.io/To-do-list/)
 
 2. Copy the URL given by clicking the clipboard button
 
