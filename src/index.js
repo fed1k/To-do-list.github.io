@@ -38,13 +38,13 @@ const createList = () => {
   const threeDots = document.createElement('i');
   threeDots.className = 'fas fa-ellipsis-v';
   const trashIcon = document.createElement('i');
-  trashIcon.className = 'fas fa-trash-alt trashIcon';
+  trashIcon.className = 'fas fa-trash-alt icon2';
   list.append(checkboxes, listText, threeDots, trashIcon);
   // Add event to checkboxes
   let count = 1;
   checkboxes.addEventListener('click', () => {
     threeDots.classList.toggle('remove-icon-active');
-    trashIcon.classList.toggle('trashIcon');
+    trashIcon.classList.toggle('icon2');
     listText.classList.toggle('listContent-disable');
     list.classList.toggle('changeBg');
     const getting = JSON.parse(localStorage.getItem('list'));
