@@ -191,7 +191,7 @@ footer span {
     display: block;
 }
 
-button:hover {
+.btn:hover {
     cursor: pointer;
 }
 
@@ -202,6 +202,7 @@ button:hover {
     z-index: 2;
     border-radius: 50%;
     transition: all ease-in-out 0.4s;
+    margin: 2px 0 0 4px;
 }
 
 .toggle {
