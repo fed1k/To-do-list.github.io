@@ -70,7 +70,6 @@ window.addEventListener('load', ()=>{
   list.classList.add('addUI');
   let something = localStorage.getItem('list');
   let parsing = JSON.parse(something);
-  // main.push(parsing);
   for(let i=0;i<parsing.length;i++){
     if(parsing[i]){
       main.push(parsing[i]);
@@ -82,7 +81,6 @@ window.addEventListener('load', ()=>{
       remove.className = 'remove';
       div.className = 'listDiv';
       bookslistContainer = div;
-      // bookslistContainer.classList.add('listDiv-disable');
       container.appendChild(div);
       div.append(span1, remove);
       container.style.display = 'flex';
@@ -106,12 +104,10 @@ const contactSection = document.querySelector('.contact-section');
 navAdd.addEventListener('click', ()=>{
   form.style.display = 'flex';
   contactSection.style.display = 'none';
-  // h1.style.display = 'none';
   h1.textContent = 'Add a new book';
   navAdd.classList.add('addUI');
   list.classList.remove('addUI');
   contact.classList.remove('addUI');
-  // bookslistContainer.classList.toggle('listDiv-disable');
   container.style.display = 'none';
 })
 
@@ -122,7 +118,6 @@ const addFunction = ()=>{
   list.classList.add('addUI');
   contact.classList.remove('addUI');
   navAdd.classList.remove('addUI');
-  // bookslistContainer.classList.add('listDiv-disable');
   container.style.display = 'flex';
 }
 list.addEventListener('click', addFunction)
@@ -134,7 +129,6 @@ contact.addEventListener('click', ()=>{
   contact.classList.add('addUI');
   navAdd.classList.remove('addUI');
   list.classList.remove('addUI');
-  // bookslistContainer.classList.('listDiv-disable');
   container.style.display = 'none';
 })
 
