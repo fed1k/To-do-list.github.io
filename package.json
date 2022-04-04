@@ -10,6 +10,7 @@
     "build": "webpack",
     "stylint": "npx stylelint \"**/*.scss\" --fix",
     "eslintrc": "npx eslint . --fix",
+    "deploy": "gh-pages -d dist",
     "hintrc": "npx hint ."
   },
   "repository": {
